@@ -32,7 +32,8 @@ def transfer_erc20(rec_addr, send_val):
         'maxPriorityFeePerGas': web3.toWei('1', 'gwei'),'nonce': nonce,
         }
     )
-    priv_key = ""
+    load_dotenv()
+    priv_key = os.getenv("PRIVATE_KEY")
     signed_txn = web3.eth.account.sign_transaction(contract_txn, private_key=priv_key)
     signed_txn.hash
     signed_txn.rawTransaction
