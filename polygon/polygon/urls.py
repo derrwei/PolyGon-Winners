@@ -20,4 +20,7 @@ from polygon import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homePage, name='home'),
-]
+    path('review/', views.review, name='review'),
+    path('demo/', views.demo, name='demo'),
+    path('search/', views.search, name='search'),
+    ]

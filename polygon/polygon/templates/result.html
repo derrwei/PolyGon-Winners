@@ -1,0 +1,72 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>PolyDoor</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
+
+
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/form-validation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+</head>
+
+<body class="bg-light">
+    <div class="py-5 text-center">
+        <h2>Access the reviews</h2>
+        <p class="lead">Below is an demo for PolyDoor</p>
+      </div>
+    <div class="container d-flex justify-content-center">
+        <div class="card mt-5 p-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id='key-word'>
+                <div class="input-group-append" ><button class="btn btn-primary" onClick='search()'><i class="fas fa-search">Search</i></button>
+                
+                </div>
+            </div>
+            
+            <div class="d-flex flex-row justify-content-between mx-1">
+                <p class="mb-1">{{result}}</p> 
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/form-validation.js' %}"></script>
+
+    <script>
+        function search () {   
+            let key_word = document.getElementById('key-word').value;
+            console.log(key_word);
+            $.ajax({
+                url: '{% url 'search' %}',
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'key_word': key_word,
+                    action: 'post',
+                },
+
+                success: function (data) {
+                    console.log(data);
+                },
+
+            });
+        }
+    </script>
+
+    
+    
+</body>
